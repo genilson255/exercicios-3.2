@@ -1,5 +1,2 @@
-# Adicionar todos os arquivos modificados
-git add .
 
-# Ou você também pode adicionar arquivos específicos
 git add meu_arquivo.txt
