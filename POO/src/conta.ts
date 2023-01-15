@@ -4,14 +4,15 @@ export default class Conta {
     constructor(s: number){
         this.saldo = s;
     }
-    get saldo(){
-        const nome = 'Gerente';
-        if (!nome) {
-            console.log('Cai fora');            
+    getSaldo(name: string){        
+        if(name === "Genilson"){
+            return this._saldo; 
         }
-        return this._saldo;
+        console.log(`Usuario Autorizado`);
+        
     }
-    set saldo(value: number){
-        this._saldo = 10000;
+
+    set saldo(saldo: number){
+        this._saldo = saldo;
     }
 }
