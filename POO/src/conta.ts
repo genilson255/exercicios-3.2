@@ -14,6 +14,13 @@ export default class Conta {
     //}
 
     public debito(valor: number): void {
-        this._saldo -= valor;
+        if(this._saldo < valor){
+            throw new Error(`Saldo insuficiente! ${valor}`);            
+        }
+        this._saldo -= valor;        
+    }   
+
+    public credito(valor: number): void {
+        this._saldo += valor;
     }
 }
