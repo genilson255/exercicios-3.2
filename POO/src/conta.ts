@@ -1,18 +1,17 @@
-// Obs! Toda classe deve ter/possuir um constructor
-class Conta {
-    private _saldo: number;
-    constructor(totSaldo: number){
-        this._saldo = totSaldo;
+export default class Conta {
+    private _saldo = 0;
+
+    constructor(s: number){
+        this.saldo = s;
     }
-    // Metodo get para acessar o atributo private
-    //Pegando os valores/lendo
     get saldo(){
-    return this._saldo
+        const nome = 'Gerente';
+        if (!nome) {
+            console.log('Cai fora');            
+        }
+        return this._saldo;
     }
-    // Atribuição de valores update
-    set saldo (s: number){
-        this._saldo = s;
+    set saldo(value: number){
+        this._saldo = 10000;
     }
 }
-
-export default Conta;

@@ -1,0 +1,47 @@
+{
+  "root": true,
+  "env": {
+    "browser": false,
+    "node": true,
+    "es6": true,
+    "jest": true
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-base",
+    "plugin:editorcconfig/noconflig",
+    "plugin:mocha/recommended",
+    "airbnb-typescript/base"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2019,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "sonarjs",
+    "editconfig",
+    "mocha"
+  ],
+  "overrides": [
+    {
+      "files": ["*test.ts"],
+      "rules": {
+        "mocha/no-mocha-arrows": "off",
+        "max-lines-per-function":"off",
+        "no-new": "off"
+      }
+    }
+  ],
+  "rules": {
+    "no-underscore-dangle": "off",
+    "lines-between-class-members": [
+      "error",
+      "aways",{
+        "exceptAfterSingleLine": true
+      }
+    ]
+  }
+}

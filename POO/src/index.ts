@@ -1,7 +1,4 @@
-console.log('Bora back');
+import Conta from "./conta";
 
-// Instanciar uma classe;
-import Conta from './conta'
-const contaGenilson = new Conta(100000);
-contaGenilson.saldo = 500;
-console.log(contaGenilson.saldo);
+const minhaConta = new Conta(100);
+console.log(minhaConta.saldo);
