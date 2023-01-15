@@ -1,18 +1,19 @@
 export default class Conta {
     private _saldo = 0;
 
-    constructor(s: number){
-        this.saldo = s;
-    }
-    getSaldo(name: string){        
-        if(name === "Genilson"){
-            return this._saldo; 
-        }
-        console.log(`Usuario Autorizado`);
-        
+    constructor(tot: number){
+        this._saldo = tot;
     }
 
-    set saldo(saldo: number){
-        this._saldo = saldo;
+    get saldo(){
+        return this._saldo; 
+    }
+
+    //set saldo(saldo: number){
+    //    this._saldo = saldo;
+    //}
+
+    public debito(valor: number): void {
+        this._saldo -= valor;
     }
 }
