@@ -1,9 +1,8 @@
 import Conta from "./conta";
 
 const minhaConta = new Conta(1000);
-// minhaConta.saldo = 1000;
 try {
-  minhaConta.debito(10000);
+  //minhaConta.debito(1);
 } catch (error) {
   console.log(String(error));
   
