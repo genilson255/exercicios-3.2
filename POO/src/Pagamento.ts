@@ -10,6 +10,14 @@
   // - prestacoes: cada uma possui valor e vencimento
 //}
 
+// type TPagamento {
+//   conta: Conta;
+//   valor: number;
+//   vencimento: Date;
+//   tipoPagamento: string; 
+//   descricao?: string;
+// }
+
 import {IPrestacao} from './interface/IPrestacao';
 // import {TPagamento} from './types/TPagamento';
 export class Pagamento {
@@ -19,21 +27,55 @@ export class Pagamento {
   private _descricao?: string;
   private _tipoPagamento: string;
   private _multa: number;
-  private _prestacao: IPrestacao[];
+  private _prestacoes: IPrestacao[];
 
-  constructo(conta: Conta,
-    valor: number,
-    vencimento: Date,
-    descricao?: string,
-    tipoPagamento: string
-  ){
-    
-    this._conta = conta;
-    this._valor =  valor;
-    this._vencimento = vencimento;
-    this._descricao? = descricao || '';
-    this._tipoPagamento = tipoPagamento;
+  constructo(params: TPagamento){    
+    this._conta = params.conta;
+    this._valor =  params.valor;
+    this._vencimento = params.vencimento;
+    this._descricao? = params.descricao || '';
+    this._tipoPagamento = params.tipoPagamento;
     this._multa = 0.2;
-    this._prestacao = [];
+    this._prestacoes = [];
   }
-}
+  get valor(){
+    return this._valor;
+  }
+    set valor(v: number){
+      this._valor = v;
+  }
+  get vencimento(){
+    return this._vencimento;
+  }
+  set vencimento(v: Date){
+    this._vencimento = v;
+  }
+  get tipoPagamento(){
+    return this._tipoPagamento;
+  }
+  set tipoPagamento(tp: string){
+    this._tipoPagamento: tp;
+  }
+  get multa(){
+    return this._multa;
+  }
+  get descricao(){
+    return this._descricao;
+  }
+  set descricao(d: string){
+    this._descricao = d;
+  }
+  get prestacao(){
+    return this._prestacoes;
+  }
+  set prestacao(p: IPrestacao[]){
+    if(p.length > 10){
+      throw new Error(`Parcelamento maior que o permitido`);      
+    }
+    this._prestacoes = p;
+  }
+  get conta(): Conta{
+    return this._conta;
+  }
+ 
+}  

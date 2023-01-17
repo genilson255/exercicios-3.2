@@ -3,6 +3,7 @@ type TPagamento {
   conta: Conta;
   valor: number;
   vencimento: Date;
-  tipoPagamento?: string; 
+  tipoPagamento: string; 
+  descricao?: string;
 }
 export default TPagamento
