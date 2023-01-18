@@ -17,10 +17,11 @@
 //   tipoPagamento: string; 
 //   descricao?: string;
 // }
-
+import Conta from './conta';
 import {IPrestacao} from './interface/IPrestacao';
-// import {TPagamento} from './types/TPagamento';
-export class Pagamento {
+import {TPagamento} from './types/TPagamento';
+import {isBerore} from 'date-fns';
+export default class Pagamento {
   private _conta: number;
   private _valor: number;
   private _vencimento: Date;
@@ -77,5 +78,55 @@ export class Pagamento {
   get conta(): Conta{
     return this._conta;
   }
- 
+  public pagar(){
+    if(this.tipoPagamento === 'boleto')return this.pagarBoleto();
+    if(this.tipoPagamento === 'cartao')return this.pagarCartao();
+    if(this.tipoPagamento === 'pix')return this.pagarPix();
+    throw new Error("Metodo de pagamento nao existe");
+    
+  }
+
+  private estaVencido(): boolean {
+    return isBerore(new Date(), this.vencimento)
+  }
+
+  public  pagarBoleto(){
+    console.log('Pgt via boleto');
+    console.log('Saldo da conta:', this.conta.saldo);
+    console.log('Dados para o pagamento do boleto');
+    console.log('Descrição:', this.descricao);
+    console.log('Vencimento:', this.vencimento);
+    console.log('Multa:', this.multa);
+    console.log('Processando pagamento...');
+    if(this.estaVencido()){
+      this.valor += (this.valor * this.multa);
+    }
+    this.conta.debito(this.valor);
+    console.log('Saldo restante:', this.conta.saldo);
+    
+    
+  }
+
+
+  public  pagarCartao(){
+    console.log('Pgt via cartao');
+    console.log('Saldo da conta:', this.conta.saldo);
+    console.log('Descrição:', this.descricao);
+    console.log('Valor:', this.valor);
+    console.log('Processando pagamento...');
+    this.conta.debito(this.valor);
+    console.log('Saldo restante:', this.conta.saldo);
+    
+  }
+
+
+  public  pagarPix(){
+    console.log('Pgt via Pix');
+    console.log('Saldo da conta:', this.conta.saldo);
+    console.log('Descrição:', this.descricao);
+    console.log('Valor:', this.valor);
+    console.log('Processando pagamento...');
+    this.conta.debito(this.valor);
+    console.log('Saldo restante:', this.conta.saldo);
+  }
 }  
